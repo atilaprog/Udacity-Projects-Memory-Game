@@ -18,7 +18,7 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Coda', cursive; 
 }
 
 .container {
@@ -39,7 +39,7 @@ h1 {
 
 .deck {
     width: 660px;
-    min-height: 680px;
+    min-height: 630px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -48,7 +48,6 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 3em;
 }
 
 .deck .card {
@@ -86,25 +85,25 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
+    flex-direction: row;
+    justify-content: space-between;
     width: 345px;
-    margin-bottom: 10px;
 }
 
 .score-panel .stars {
+    flex-direction: row;
+    justify-content: space-between;
     margin: 0;
     padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
     list-style: none;
-    display: inline-block;
+    width: 1.2em;
 }
 
 .score-panel .restart {
-    float: right;
+    cursor: pointer;
 }     
 /*Classes to shuffle cards*/
 .card3 {order: "15"}.card2{order: "1"}.card1{order: "2"}.card4{order: "3"}.card5{order: "4"}.card6{order: "5"}.card7{order: "6"}.card8{order: "7"}.card9{order: "8"}.card0{order: "9"}.card10{order: "0"}.card11{order: "10"}.card12{order: "11"}.card13{order: "12"}.card14{order: "13"}.card15{order: "14"}

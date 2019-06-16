@@ -1,0 +1,31 @@
+@media screen and (min-width: 549px) {
+    .deck {
+        width: 500px;
+        height: 560px;
+    }
+    
+    .deck .card {
+        width: 100px;
+        height: 100px;
+    }
+
+    .score-panel {
+        width: 430px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .deck {
+        width: 700px;
+        height: 660px;
+    }
+    
+    .deck .card {
+        width: 135px;
+        height: 135px;
+    }
+
+    .score-panel {
+        width: 530px;
+    }
+}

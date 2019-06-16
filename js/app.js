@@ -15,6 +15,11 @@ let secondsTimer1 = document.querySelector('.seconds1')
 let minutesTimer2 = document.querySelector('.minutes2')
 let secondsTimer2 = document.querySelector('.seconds2')
 let secondsTimer3 = document.querySelector('.seconds3')
+let textModal = document.querySelector('.text-modal')
+let span = document.getElementsByClassName('close')[0]
+let modal = document.getElementById('myModal')
+
+
 
 /*-----Arrays-----*/
 let cardsToShuffle = [].slice.call(allCards.children)
@@ -24,8 +29,7 @@ let deckMatch = []
 let deckChances = []
 /*-----Deck Opened-----*/
 let deckOpened = []
-/*-----Deck Check Timer-----*/
-let deckTimer = []
+
 /*-----Array to shuffle-----*/
 let classToShuffle = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anchor', 'anchor', 'bolt', 
 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 
@@ -35,63 +39,11 @@ let classToShuffle = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'a
 /*-----Click Deck-----*/
 allCards.addEventListener('click', addOpenShowClass)
 resetButton.addEventListener('click', resetGame)
+span.addEventListener('click', closeModal)
 
 /*-----Functions-----*/
-//timer function
-function timer(){
-    
-    setInterval(() => {
-        secondsTimer3.textContent++
-        if(secondsTimer3.textContent == 10){
-            secondsTimer3.textContent = 0
-        }
-    }, 100);
-
-    setInterval(() => {
-        secondsTimer2.textContent++
-        if(secondsTimer2.textContent == 10){
-            secondsTimer2.textContent = 0
-        }
-    }, 1000);
-
-    setInterval(() => {
-        secondsTimer1.textContent++
-        if(secondsTimer1.textContent == 6){
-            secondsTimer1.textContent = 0
-        }
-    }, 10000);
-
-    setInterval(() => {
-        minutesTimer2.textContent++
-        if(minutesTimer2.textContent == 9){
-            minutesTimer2.textContent = 0
-        }
-    }, 60000);
-
-    setInterval(() => {
-        minutesTimer2.textContent++
-        if(minutesTimer2.textContent == 6){
-            minutesTimer2.textContent = 0
-        }
-    }, 600000);
-
-    setInterval(() => {
-        hoursTimer.textContent++
-        if(hoursTimer.textContent == 24){
-            hoursTimer.textContent = 0
-        }
-    }, 3600000);
-    
-    
-    
-}
 //function to add open and match class in target
 function addOpenShowClass (event){
-
-    if(deckTimer.length == 0){
-        deckTimer.push('check')
-        timer()
-    }
     
     let target = event.target
     let child = target.firstElementChild
@@ -118,11 +70,10 @@ function addOpenShowClass (event){
 
 //function if you loose a chance
 function lostChances (){
-    
+
     if(deckChances.length == 3 || deckChances.length == 6 || deckChances.length == 9 ){ let starChild = document.querySelector('.fa-star')
     starChild.classList.remove('fa-star')
     starChild.classList.add('fa-star-o', '1')
-    
     if(listOfStars[2].classList.contains('1')){
         resetGame()
     }}
@@ -132,33 +83,42 @@ function lostChances (){
 //function to reset game
 function resetGame(){
 
-    classToShuffle = shuffle(classToShuffle)
-
-    console.log(classToShuffle)
-
+    deckChances.length = 0
     deckOpened.length = 0
-    deckMatch.length = 0
+    classToShuffle = shuffle(classToShuffle)
     
     //put all stars again in the game panel
-    for(let putStars of listOfStars){
+    listOfStars.forEach(putStars => {
         putStars.classList.remove('fa-star-o', '1')
         putStars.classList.add('fa-star')
-
-    }
-
+    })
+    
     //close all cards
     for (let i = 0; i < allCards.children.length; i++) {
-        const element = allCards.children[i];
+        const element = allCards.children[i]
         element.classList.remove('open','show','same','match')
         
-        removeClassByPrefix(element.firstElementChild, 'fa-');
-
-        const symbol = `fa-${classToShuffle[i]}`;
+        removeClassByPrefix(element.firstElementChild, 'fa-')
+        
+        const symbol = `fa-${classToShuffle[i]}`
         element.firstElementChild.classList.add(symbol) 
     }
+    
+    
+    
+    if(deckMatch.length == 8){
+        modal.style.display = 'block'
+        textModal.textContent = `You win with ${increaseMoves.textContent} moves`
+    }else{
+        modal.style.display = 'block'
+        textModal.textContent = 'Try again'
+    }
+    
     increaseMoves.textContent = 0
-    alert('Try again')
+    deckMatch.length = 0
+
 }
+
 
 //function to check if cards match
 function checkMatch(){
@@ -189,18 +149,22 @@ function checkMatch(){
 function closeCard (card){
     setTimeout(() => {
         card.classList.remove('open', 'show', 'same')
-    }, 500);
+    }, 500)
 }
 
 //function to add 'match' class
 function matchCard (card){
     setTimeout(() => {
         if(deckMatch.length === 8){
-            alert(`You win with ${increaseMoves.textContent} moves` )
             resetGame()
         }
-    }, 500);
+    }, 500)
     card.classList.add('match')
+}
+
+//function to close modal
+function closeModal (){
+    modal.style.display = 'none'
 }
 /*
  * Display the cards on the page
@@ -212,23 +176,23 @@ function matchCard (card){
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length, temporaryValue, randomIndex
 
     while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex -= 1
+        temporaryValue = array[currentIndex]
+        array[currentIndex] = array[randomIndex]
+        array[randomIndex] = temporaryValue
     }
-    return array;
+    return array
 }
 
 //function to remove prefix of classes
 function removeClassByPrefix(el, prefix, replace = '') {
-    var regx = new RegExp('\\b' + prefix + '(.*)?\\b', 'g');
-    el.className = el.className.replace(regx, replace);
-    return el;
+    var regx = new RegExp('\\b' + prefix + '(.*)?\\b', 'g')
+    el.className = el.className.replace(regx, replace)
+    return el
 }
 
 

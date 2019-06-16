@@ -28,4 +28,17 @@
     .score-panel {
         width: 530px;
     }
+    
+    .deck .card.show {
+        font-size: 33px;
+    }
+    
+    .deck .card.match {
+        font-size: 33px;
+    }
 }
+
+
+
+
+

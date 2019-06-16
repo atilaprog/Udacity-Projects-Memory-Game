@@ -2,17 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Matching Game</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/responsive.css">
     
 </head>
 <body>
 <div class="container">
+
+        <div id="myModal" class="modal">
+            <div class="modal-content container">
+                <span class="close">&times;</span>
+                <p class="text-modal">Texte text</p>
+            </div>
+        </div>
+
         <header>
-            <h1>Matching Game</h1>
+            <h1>Memory Game</h1>
         </header>
 
         <section class="score-panel container">
@@ -24,15 +35,6 @@
 
             <div>
                 <span class="moves">0</span> Moves
-            </div>
-
-            <div>  
-                <span class="hours">0 </span>:
-                <span class="minutes1">0</span>
-                <span class="minutes2">0 </span>:
-                <span class="seconds1">0</span>
-                <span class="seconds2">0</span>
-            	<span class="seconds3">0 </span>Timer
             </div>
 
             <div class="restart">

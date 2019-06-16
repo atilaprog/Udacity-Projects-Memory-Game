@@ -38,21 +38,21 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 630px;
+    width: 330px;
+    height: 400px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    width: 60px;
+    height: 60px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -71,13 +71,13 @@ h1 {
 }
 
 .deck .card.show {
-    font-size: 33px;
+    font-size: 23px;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    font-size: 23px;
 }
 
 /*
@@ -87,7 +87,8 @@ h1 {
 .score-panel {
     flex-direction: row;
     justify-content: space-between;
-    width: 345px;
+    width: 230px;
+
 }
 
 .score-panel .stars {
@@ -107,4 +108,39 @@ h1 {
 }     
 /*Classes to shuffle cards*/
 .card3 {order: "15"}.card2{order: "1"}.card1{order: "2"}.card4{order: "3"}.card5{order: "4"}.card6{order: "5"}.card7{order: "6"}.card8{order: "7"}.card9{order: "8"}.card0{order: "9"}.card10{order: "0"}.card11{order: "10"}.card12{order: "11"}.card13{order: "12"}.card14{order: "13"}.card15{order: "14"}
-
+/*Modal settings*/
+.modal {
+    display: none; 
+    top: 0;
+    right: 0;
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+.modal-content {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+  
+.close {
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
